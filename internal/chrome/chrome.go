@@ -115,7 +115,7 @@ func Ensure() error {
 		}
 		return nil
 	}
-	fmt.Println("Launching Chrome...")
+	fmt.Println("Launching browser...")
 	bin, err := Find(runtime.GOOS, os.Getenv, fileExists)
 	if err != nil {
 		return err
@@ -136,7 +136,7 @@ func Ensure() error {
 			return nil
 		}
 	}
-	return fmt.Errorf("Chrome did not open debugging port %s", Port)
+	return fmt.Errorf("browser did not open debugging port %s", Port)
 }
 
 // ownsPort detects a leftover Chrome from an earlier run that used our profile.
@@ -240,7 +240,7 @@ func (w *Waiter) WaitForToken(expr string) (string, string, error) {
 			break
 		}
 		if !w.notice {
-			fmt.Println("Waiting for sign-in. Please sign in to Azure in the Chrome window...")
+			fmt.Println("Waiting for sign-in. Please sign in to Azure in the browser window... (Ctrl+C to cancel)")
 			w.notice = true
 		}
 		time.Sleep(time.Second)
