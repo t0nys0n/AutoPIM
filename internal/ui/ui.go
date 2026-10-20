@@ -443,6 +443,21 @@ func Select(title string, items []Choice) ([]int, error) {
 					}
 				} else {
 					toggle([]int{r.item})
+					// Fold only the item's own group when nothing in it is selected.
+					if len(r.anc) > 0 {
+						p := r.anc[len(r.anc)-1]
+						none := true
+						for _, i := range p.all {
+							if selected[i] {
+								none = false
+								break
+							}
+						}
+						if none {
+							collapsed[p] = true
+							cursor = headRow[p]
+						}
+					}
 				}
 			}
 		case "a":
